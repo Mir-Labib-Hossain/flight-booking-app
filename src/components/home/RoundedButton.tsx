@@ -1,17 +1,19 @@
+import SvgToImg from "../SvgToImg";
+
 type Props = {
   active?: boolean;
   onClick: () => void;
-  children: React.ReactNode;
+  children: string;
   icon: any;
 };
 
-const RoundedButton = ({ active, onClick, children }: Props) => {
+const RoundedButton = ({ icon, active, onClick, children }: Props) => {
   return (
-    <button onClick={onClick} className={`flex items-center p-4 h-10 border-2 rounded-3xl ${active && "border-primary"} bg-secondary`}>
+    <button onClick={onClick} className={`flex items-center gap-2 p-4 h-10 border-2 rounded-3xl ${active && "border-primary"} bg-secondary`}>
       <div>
-        <SvgtoImg
+        <SvgToImg alt={children} code={icon} height={14} width={14} />
       </div>
-      <div>{children}</div>
+      <div className="text-sm">{children}</div>
     </button>
   );
 };
