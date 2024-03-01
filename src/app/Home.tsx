@@ -1,51 +1,18 @@
 "use client";
-import { EAirportType, EBookingClass, EJourneyType, IPayload } from "@/@types/types";
 import SvgToImg from "@/components/SvgToImg";
 import HeroBg from "@/components/home/HeroBg";
 import RoundedButton from "@/components/home/RoundedButton";
-import { CityBlack, CityPrimary, HotelPrimaryIcon, HotelWhiteIcon, LoopBlack, LoopPrimary, PlanePrimaryIcon, PlaneWhiteIcon, RightBlack, RightPrimary } from "@/components/icons";
-import DateRangepicker from "@/components/inputs/DateRangepicker";
+import { CityBlack, CityPrimary, FromToIcon, HotelPrimaryIcon, HotelWhiteIcon, LoopBlack, LoopPrimary, PlanePrimaryIcon, PlaneWhiteIcon, RightBlack, RightPrimary } from "@/components/icons";
 import SelectClass from "@/components/inputs/SelectClass";
 import SelectFlight from "@/components/inputs/SelectFlight";
-import SelectFromTo from "@/components/inputs/SelectFromTo";
+import SelectFrom from "@/components/inputs/SelectFromTo";
 import SelectPassenger from "@/components/inputs/SelectPassenger";
-import { SearchOutlined } from "@ant-design/icons";
-import { Button, Empty } from "antd";
+import { Empty } from "antd";
 import { useState } from "react";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
   const [active, setActive] = useState(0);
-
-  const [payload, setPayload] = useState<IPayload>({
-    journey_type: EJourneyType.ONE_WAY, // OneWay, RoundTrip, MultiCity
-    segment: [
-      {
-        departure_airport_type: EAirportType.CITY, // CITY or AIRPORT
-        departure_airport: "",
-        arrival_airport_type: EAirportType.CITY, // CITY or AIRPORT
-        arrival_airport: "",
-        departure_date: "2024-03-20",
-        arrival_date: "2024-04-20", // Only For RoundTrip
-      },
-    ],
-    travelers_adult: 0,
-    travelers_child: 0,
-    travelers_child_age: [],
-    travelers_infants: 0,
-    travelers_infants_age: [],
-    preferred_carrier: [null],
-    non_stop_flight: "any", // any or non-stop,
-    baggage_option: "any", // any or only-baggage
-    booking_class: EBookingClass.ECONOMY, // Economy , Premium-Economy, Business, First-Class
-    supplier_uid: "all", //all
-    partner_id: "", //ftm_partner_id / mark blank
-    language: "en",
-  });
-
-  const handleSearch = () => {
-    console.log(payload);
-  };
 
   return (
     <div className="h-screen relative flex justify-center">
@@ -61,7 +28,7 @@ export default function Home() {
             Hotels
           </button>
         </div>
-        <div className="w-[1056px] h-64 p-6 shadow-md rounded-b-2xl rounded-tr-2xl bg-white search-box-1 border relative">
+        <div className="w-[1056px] h-64 p-6 shadow-md rounded-b-2xl rounded-tr-2xl bg-white search-box-1 border">
           {activeTab === 0 ? (
             <>
               <div className="flex justify-between">
@@ -83,18 +50,12 @@ export default function Home() {
                 </div>
               </div>
               {active === 0 ? (
-                <>
-                  <div className="flex items-center gap-3 my-3">
-                    <SelectFromTo onDepartureChange={(newVal: string) => setPayload((prev) => ({ ...prev, segment: [{ ...prev.segment[0], departure_airport: newVal }] }))} onArrvalChange={(newVal: string) => setPayload((prev) => ({ ...prev, segment: [{ ...prev.segment[0], arrival_airport: newVal }] }))} departureValue={payload.segment[0].departure_airport} arrivalValue={payload.segment[0].arrival_airport} />
+                <div className="flex items-center gap-3 my-3">
+                  <SelectFrom />
+                  <SelectFrom />
 
-                    <DateRangepicker />
-                  </div>
-                  <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 ">
-                    <Button onClick={handleSearch} type="primary" block className="bg-primary text-2xl h-auto" size="large" icon={<SearchOutlined />}>
-                      Search
-                    </Button>
-                  </div>
-                </>
+                  <SvgToImg alt={"plane"} code={FromToIcon} height={20} width={20} />
+                </div>
               ) : (
                 <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
               )}

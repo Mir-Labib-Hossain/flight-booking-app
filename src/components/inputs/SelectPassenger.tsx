@@ -1,9 +1,7 @@
-import { Button, Select, theme } from "antd";
+import { Button, Select } from "antd";
 import React from "react";
 import SvgToImg from "../SvgToImg";
 import { AdultIcon, BabyIcon, ChildIcon } from "../icons";
-
-const { useToken } = theme;
 
 const SelectPassenger: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import { EClass } from "@/@types/types";
+import { EBookingClass } from "@/@types/types";
 import { Select, SelectProps } from "antd";
 import { useState } from "react";
 import SvgToImg from "../SvgToImg";
@@ -7,9 +7,9 @@ import { TickPrimaryIcon } from "../icons";
 type Props = {};
 
 const SelectClass = (props: Props) => {
-  const { BUSINESS_CLASS, ECONOMY, FIRST_CLASS, PREMIUM_ECONOMY } = EClass;
+  const { BUSINESS_CLASS, ECONOMY, FIRST_CLASS, PREMIUM_ECONOMY } = EBookingClass;
   const [selected, setselected] = useState(ECONOMY);
-  const handleChange = (value: EClass) => {
+  const handleChange = (value: EBookingClass) => {
     console.log(`selected ${value}`);
     setselected(value);
   };
@@ -35,7 +35,7 @@ const SelectClass = (props: Props) => {
 
   return (
     <Select
-      style={{ width: "160px" }}
+      style={{ width: "130px" }}
       value={selected}
       onChange={handleChange}
       optionLabelProp="label"
