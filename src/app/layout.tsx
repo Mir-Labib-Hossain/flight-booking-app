@@ -1,3 +1,4 @@
+import { ConfigProvider } from "antd";
 import type { Metadata } from "next";
 import { Lexend_Deca } from "next/font/google";
 import "./globals.css";
@@ -18,7 +19,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={LexendDecaFont.className}>{children}</body>
+      <body className={LexendDecaFont.className}>
+        <ConfigProvider
+          theme={{
+            token: {
+              // Seed Token
+              colorPrimary: "#bb2a2f",
+            },
+          }}
+        >
+          {children}
+        </ConfigProvider>
+      </body>
     </html>
   );
 }
