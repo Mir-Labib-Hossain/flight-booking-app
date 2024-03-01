@@ -8,7 +8,7 @@ export enum EJourneyType {
   MULTI_CITY = "MultiCity",
 }
 export enum EFlight {
-  ANY_FLIGHT = "any flight",
+  ANY_FLIGHT = "any",
   NON_STOP_FLIGHT = "non-stop",
 }
 
@@ -27,8 +27,8 @@ export interface IPayload {
       departure_airport: string;
       arrival_airport_type: EAirportType; // CITY or AIRPORT
       arrival_airport: string;
-      departure_date: string | Date;
-      arrival_date: string | Date; // Only For RoundTrip
+      departure_date: string;
+      arrival_date?: string; // Only For RoundTrip
     }
   ];
   travelers_adult: number;
@@ -37,7 +37,7 @@ export interface IPayload {
   travelers_infants: number;
   travelers_infants_age: number[];
   preferred_carrier: null[];
-  non_stop_flight: "any"; // any or non-stop,
+  non_stop_flight: EFlight; // any or non-stop,
   baggage_option: "any"; // any or only-baggage
   booking_class: EBookingClass; // Economy , Premium-Economy, Business, First-Class
   supplier_uid: "all"; //all

@@ -6,12 +6,12 @@ import { FromToIcon, PlaneBlackIcon } from "../icons";
 
 interface Props {
   onDepartureChange: (newValue: string) => void;
-  onArrvalChange: (newValue: string) => void;
+  onArrivalChange: (newValue: string) => void;
   departureValue: string;
   arrivalValue: string;
 }
 
-const SelectFromTo = ({ arrivalValue, departureValue, onArrvalChange, onDepartureChange }: Props) => {
+const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartureChange }: Props) => {
   const [data, setData] = useState<IAirportOption[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -74,7 +74,7 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrvalChange, onDepartur
         <p className="px-3 text-xs text-[#838383]">Going To</p>
         <Select
           value={arrivalValue}
-          onChange={onArrvalChange}
+          onChange={onArrivalChange}
           loading={loading}
           showSearch
           removeIcon

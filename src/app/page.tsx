@@ -1,5 +1,5 @@
 "use client";
-import { EAirportType, EBookingClass, EJourneyType, IPayload } from "@/@types/types";
+import { EAirportType, EBookingClass, EFlight, EJourneyType, IPayload } from "@/@types/types";
 import SvgToImg from "@/components/SvgToImg";
 import HeroBg from "@/components/home/HeroBg";
 import RoundedButton from "@/components/home/RoundedButton";
@@ -15,7 +15,6 @@ import { useState } from "react";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
-  const [active, setActive] = useState(0);
 
   const [payload, setPayload] = useState<IPayload>({
     journey_type: EJourneyType.ONE_WAY, // OneWay, RoundTrip, MultiCity
@@ -25,8 +24,8 @@ export default function Home() {
         departure_airport: "",
         arrival_airport_type: EAirportType.CITY, // CITY or AIRPORT
         arrival_airport: "",
-        departure_date: "2024-03-20",
-        arrival_date: "2024-04-20", // Only For RoundTrip
+        departure_date: "",
+        arrival_date: undefined, // Only For RoundTrip
       },
     ],
     travelers_adult: 0,
@@ -35,7 +34,7 @@ export default function Home() {
     travelers_infants: 0,
     travelers_infants_age: [],
     preferred_carrier: [null],
-    non_stop_flight: "any", // any or non-stop,
+    non_stop_flight: EFlight.ANY_FLIGHT, // any or non-stop,
     baggage_option: "any", // any or only-baggage
     booking_class: EBookingClass.ECONOMY, // Economy , Premium-Economy, Business, First-Class
     supplier_uid: "all", //all
@@ -66,37 +65,38 @@ export default function Home() {
             <>
               <div className="flex justify-between">
                 <div className="flex items-center gap-2">
-                  <RoundedButton icon={active === 0 ? RightPrimary : RightBlack} active={active === 0} onClick={() => setActive(0)}>
+                  <RoundedButton icon={payload.journey_type === EJourneyType.ONE_WAY ? RightPrimary : RightBlack} active={payload.journey_type === EJourneyType.ONE_WAY} onClick={() => setPayload((prev) => ({ ...prev, journey_type: EJourneyType.ONE_WAY }))}>
                     One-way
                   </RoundedButton>
-                  <RoundedButton icon={active === 1 ? LoopPrimary : LoopBlack} active={active === 1} onClick={() => setActive(1)}>
+                  <RoundedButton icon={payload.journey_type === EJourneyType.ROUND_TRIP ? LoopPrimary : LoopBlack} active={payload.journey_type === EJourneyType.ROUND_TRIP} onClick={() => setPayload((prev) => ({ ...prev, journey_type: EJourneyType.ROUND_TRIP }))}>
                     Round-trip
                   </RoundedButton>
-                  <RoundedButton icon={active === 2 ? CityPrimary : CityBlack} active={active === 2} onClick={() => setActive(2)}>
+                  <RoundedButton icon={payload.journey_type === EJourneyType.MULTI_CITY ? CityPrimary : CityBlack} active={payload.journey_type === EJourneyType.MULTI_CITY} onClick={() => setPayload((prev) => ({ ...prev, journey_type: EJourneyType.MULTI_CITY }))}>
                     Multi-city
                   </RoundedButton>
                 </div>
                 <div className="flex">
-                  <SelectFlight />
+                  <SelectFlight value={payload.non_stop_flight} onChange={(newValue: EFlight) => setPayload((prev) => ({ ...prev, non_stop_flight: newValue }))} />
                   <SelectClass />
                   <SelectPassenger />
                 </div>
               </div>
-              {active === 0 ? (
+              {payload.journey_type !== EJourneyType.MULTI_CITY ? (
                 <>
                   <div className="flex items-center gap-3 my-3">
-                    <SelectFromTo onDepartureChange={(newVal: string) => setPayload((prev) => ({ ...prev, segment: [{ ...prev.segment[0], departure_airport: newVal }] }))} onArrvalChange={(newVal: string) => setPayload((prev) => ({ ...prev, segment: [{ ...prev.segment[0], arrival_airport: newVal }] }))} departureValue={payload.segment[0].departure_airport} arrivalValue={payload.segment[0].arrival_airport} />
-
-                    <DateRangepicker />
+                    <SelectFromTo onDepartureChange={(newVal: string) => setPayload((prev) => ({ ...prev, segment: [{ ...prev.segment[0], departure_airport: newVal }] }))} onArrivalChange={(newVal: string) => setPayload((prev) => ({ ...prev, segment: [{ ...prev.segment[0], arrival_airport: newVal }] }))} departureValue={payload.segment[0].departure_airport} arrivalValue={payload.segment[0].arrival_airport} />
+                    <DateRangepicker isRoundTrip={payload.journey_type === EJourneyType.ROUND_TRIP} departureDate={payload.segment[0].departure_date} arrivalDate={payload.segment[0].arrival_date} onDepartureChange={(newVal: string) => setPayload((prev) => ({ ...prev, segment: [{ ...prev.segment[0], departure_date: newVal }] }))} onArrivalChange={(newVal?: string) => setPayload((prev) => ({ ...prev, segment: [{ ...prev.segment[0], arrival_date: newVal }] }))} />
                   </div>
                   <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 ">
-                    <Button onClick={handleSearch} type="primary" block className="bg-primary text-2xl h-auto" size="large" icon={<SearchOutlined />}>
-                      Search
+                    <Button onClick={handleSearch} type="primary" block className="bg-primary text-2xl h-auto font-extrabold" size="large" icon={<SearchOutlined />}>
+                      SEARCH
                     </Button>
                   </div>
                 </>
               ) : (
-                <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                <div className="h-full flex items-center justify-center">
+                  <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                </div>
               )}
             </>
           ) : (
