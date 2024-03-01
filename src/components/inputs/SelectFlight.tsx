@@ -1,38 +1,19 @@
 import { EFlight } from "@/@types/types";
 import { Select, SelectProps } from "antd";
-import { useState } from "react";
 import SvgToImg from "../SvgToImg";
 import { TickPrimaryIcon } from "../icons";
 
 type Props = {
-  value:EFlight
-  onChange:(newValue:EFlight)=>void
+  value: EFlight;
+  onChange: (newValue: EFlight) => void;
 };
 
-const SelectFlight = ({onChange,value}: Props) => {
-  const { ANY_FLIGHT, NON_STOP_FLIGHT } = EFlight;
-  
-  const handleChange = (value: EFlight) => {
-    console.log(`selected ${value}`);
-    onChange(value);
-  };
-
-  const options: SelectProps["options"] = [
-    {
-      label: "Any flight",
-      value: ANY_FLIGHT,
-    },
-    {
-      label: "Non-Stop",
-      value: NON_STOP_FLIGHT,
-    },
-  ];
-
+const SelectFlight = ({ onChange, value }: Props) => {
   return (
     <Select
       style={{ width: "125px" }}
       value={value}
-      onChange={handleChange}
+      onChange={(value: EFlight) => onChange(value)}
       optionLabelProp="label"
       options={options}
       variant="borderless"
@@ -47,3 +28,15 @@ const SelectFlight = ({onChange,value}: Props) => {
 };
 
 export default SelectFlight;
+
+const { ANY_FLIGHT, NON_STOP_FLIGHT } = EFlight;
+const options: SelectProps["options"] = [
+  {
+    label: "Any flight",
+    value: ANY_FLIGHT,
+  },
+  {
+    label: "Non-Stop",
+    value: NON_STOP_FLIGHT,
+  },
+];

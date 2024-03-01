@@ -1,50 +1,26 @@
 import { EBookingClass } from "@/@types/types";
 import { Select, SelectProps } from "antd";
-import { useState } from "react";
 import SvgToImg from "../SvgToImg";
 import { TickPrimaryIcon } from "../icons";
 
-type Props = {};
+type Props = {
+  value: EBookingClass;
+  onChange: (newValue: EBookingClass) => void;
+};
 
-const SelectClass = (props: Props) => {
-  const { BUSINESS_CLASS, ECONOMY, FIRST_CLASS, PREMIUM_ECONOMY } = EBookingClass;
-  const [selected, setselected] = useState(ECONOMY);
-  const handleChange = (value: EBookingClass) => {
-    console.log(`selected ${value}`);
-    setselected(value);
-  };
-
-  const options: SelectProps["options"] = [
-    {
-      label: "Economy",
-      value: ECONOMY,
-    },
-    {
-      label: "Premium Economy",
-      value: PREMIUM_ECONOMY,
-    },
-    {
-      label: "Business Class",
-      value: BUSINESS_CLASS,
-    },
-    {
-      label: "First Class",
-      value: FIRST_CLASS,
-    },
-  ];
-
+const SelectClass = ({ onChange, value }: Props) => {
   return (
     <Select
       style={{ width: "130px" }}
-      value={selected}
-      onChange={handleChange}
+      value={value}
+      onChange={(value: EBookingClass) => onChange(value)}
       optionLabelProp="label"
       options={options}
       variant="borderless"
       optionRender={(option) => (
         <div className="flex items-center gap-2">
-          <span className={`${selected === option.data.value && "text-primary"}`}>{option.data.label}</span>
-          {selected === option.data.value && <SvgToImg alt={"plane"} code={TickPrimaryIcon} height={18} width={18} />}
+          <span className={`${value === option.data.value && "text-primary"} truncate`}>{option.data.label}</span>
+          {value === option.data.value && <SvgToImg alt={"plane"} code={TickPrimaryIcon} height={18} width={18} />}
         </div>
       )}
     />
@@ -52,3 +28,23 @@ const SelectClass = (props: Props) => {
 };
 
 export default SelectClass;
+
+const { BUSINESS_CLASS, ECONOMY, FIRST_CLASS, PREMIUM_ECONOMY } = EBookingClass;
+const options: SelectProps["options"] = [
+  {
+    label: "Economy",
+    value: ECONOMY,
+  },
+  {
+    label: "Premium Economy",
+    value: PREMIUM_ECONOMY,
+  },
+  {
+    label: "Business Class",
+    value: BUSINESS_CLASS,
+  },
+  {
+    label: "First Class",
+    value: FIRST_CLASS,
+  },
+];

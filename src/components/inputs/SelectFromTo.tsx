@@ -13,15 +13,17 @@ interface Props {
 
 const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartureChange }: Props) => {
   const [data, setData] = useState<IAirportOption[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  console.log("Fromto",loading);
 
   useEffect(() => {
+    console.log("ueff Fromto",loading);
     const fetchAirports = async () => {
+      setLoading(true)
       const headers = new Headers({
         apikey: "ITT88534696524514",
         secretecode: "BOUINpK3g7kUI9TJ9eVgaK8l1stXNzz4YC5KiOBotf9",
       });
-
       const response = await fetch(`https://devapi.innotraveltech.com/tools/airport-autosuggetion-data`, { headers });
       const formatedData = await response.json();
       setLoading(false);
@@ -31,21 +33,27 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartu
       });
       setData(tempArr);
     };
-    fetchAirports();
+     fetchAirports();
   }, []);
+
+  const handleSwitch = () => {
+    const tempDepurture = departureValue;
+    onDepartureChange(arrivalValue);
+    onArrivalChange(tempDepurture);
+  };
 
   return (
     <div className="relative flex items-center gap-3">
       <div className="bg-secondary h-[62px] rounded-md flex flex-col justify-center">
         <p className="px-3 text-xs text-[#838383]">Leaving From</p>
         <Select
-          value={departureValue}
+          value={!!departureValue ? departureValue : null}
           loading={loading}
           showSearch
           removeIcon
           onChange={onDepartureChange}
           style={{ width: 295 }}
-          placeholder="Select"
+          placeholder={loading ? "Loading . . ." : "Select"}
           optionFilterProp="children"
           variant="borderless"
           filterOption={(input, option) => (option?.label ?? "").includes(input)}
@@ -67,19 +75,19 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartu
           )}
         />
       </div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-white flex items-center justify-center shadow">
-        <SvgToImg alt={"plane"} code={FromToIcon} height={14} width={14} />
-      </div>
+      <button disabled={loading} onClick={handleSwitch} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-white flex items-center justify-center active:shadow-none shadow cursor-pointer">
+        <SvgToImg alt={"FromTo"} code={FromToIcon} height={14} width={14} />
+      </button>
       <div className="bg-secondary h-[62px] rounded-md flex flex-col justify-center">
         <p className="px-3 text-xs text-[#838383]">Going To</p>
         <Select
-          value={arrivalValue}
+          value={!!arrivalValue ? arrivalValue : null}
           onChange={onArrivalChange}
           loading={loading}
           showSearch
           removeIcon
           style={{ width: 295 }}
-          placeholder="Select"
+          placeholder={loading ? "Loading . . ." : "Select"}
           optionFilterProp="children"
           variant="borderless"
           filterOption={(input, option) => (option?.label ?? "").includes(input)}

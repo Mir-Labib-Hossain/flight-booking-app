@@ -25,6 +25,7 @@ export default function RootLayout({
             token: {
               // Seed Token
               colorPrimary: "#bb2a2f",
+              fontFamily: "inherit",
             },
           }}
         >
