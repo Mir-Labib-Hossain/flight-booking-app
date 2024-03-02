@@ -5,7 +5,7 @@ const HeroBg = (props: Props) => {
     <div
       className="absolute top-0 left-0 h-[60vh] w-screen"
       style={{
-        backgroundImage: "url(https://wallpapercave.com/wp/wp10604187.jpg)",
+        backgroundImage: "url(/hero-bg.png)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",

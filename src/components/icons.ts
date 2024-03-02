@@ -13,6 +13,11 @@ export const PlanePrimaryIcon = `<?xml version="1.0" encoding="utf-8"?><!-- Uplo
   <path fill-rule="evenodd" d="M21,2 C20.3597108,2 19.7456461,2.25435391 19.2928932,2.70710678 L16.4003571,5.59964294 C16.1519767,5.84802329 15.7914897,5.94787242 15.4507147,5.86267866 L4,3 L2.98105825,4.01894175 C2.59053396,4.40946604 2.59053396,5.04263102 2.98105825,5.43315531 C3.05705957,5.50915663 3.14481653,5.57240826 3.24095144,5.62047572 L12,10 L8,14 L3.61803399,14 C3.23926193,14 2.89299881,14.2140024 2.7236068,14.5527864 L2,16 L2,16 L6,18 L6,18 L8,22 L9.4472136,21.2763932 C9.78599762,21.1070012 10,20.7607381 10,20.381966 L10,16 L14,12 L18.3795243,20.7590486 C18.6265135,21.2530271 19.2271866,21.4532514 19.7211651,21.2062622 C19.8173,21.1581947 19.9050569,21.0949431 19.9810583,21.0189417 L21,20 L18.1373213,8.54928535 C18.0521276,8.20851033 18.1519767,7.84802329 18.4003571,7.59964294 L21.2928932,4.70710678 C21.7456461,4.25435391 22,3.64028925 22,3 C22,2.44771525 21.5522847,2 21,2 Z"/>
 </svg>`;
 
+export const ShareIcon=`<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.4306 7.70172C7.55045 7.99826 3.43929 15.232 2.17021 19.3956C2.07701 19.7014 2.31139 20 2.63107 20C2.82491 20 3.0008 19.8828 3.08334 19.7074C6.04179 13.4211 12.7066 12.3152 15.514 12.5639C15.7583 12.5856 15.9333 12.7956 15.9333 13.0409V15.1247C15.9333 15.5667 16.4648 15.7913 16.7818 15.4833L20.6976 11.6784C20.8723 11.5087 20.8993 11.2378 20.7615 11.037L16.8456 5.32965C16.5677 4.92457 15.9333 5.12126 15.9333 5.61253V7.19231C15.9333 7.46845 15.7065 7.69133 15.4306 7.70172Z" fill="#FABE23" stroke="#FABE23" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+
 export const PlaneRightPrimaryIcon = `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
 <svg version="1.1" id="svg2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="plane.svg" inkscape:version="0.48.4 r9939" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="0 0 1200 1200" enable-background="new 0 0 1200 1200" xml:space="preserve" fill="#bb2a2f">
@@ -75,6 +80,33 @@ export const AdultIcon = `<?xml version="1.0" encoding="utf-8"?>
 		"/>
 </g>
 </svg>`;
+
+export const MealIcon = `<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg height="800px" width="800px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 512 512"  xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#AAA9AA;}
+</style>
+<g>
+	<path class="st0" d="M249.705,108.488c-81.462,0-147.512,66.05-147.512,147.512c0,81.462,66.05,147.512,147.512,147.512
+		c81.472,0,147.512-66.05,147.512-147.512C397.217,174.538,331.177,108.488,249.705,108.488z M249.705,373.677
+		c-64.884,0-117.677-52.793-117.677-117.677s52.793-117.677,117.677-117.677S367.382,191.116,367.382,256
+		S314.589,373.677,249.705,373.677z"/>
+	<path class="st0" d="M21.915,172.576C4.075,234.032,0.307,272.782,0.307,272.782s-1.942,23.58,3.943,23.58
+		c5.875,0,20.442,0,20.442,0v85.464c0,9.216,7.489,16.704,16.704,16.704h12.946c9.216,0,16.704-7.488,16.704-16.704V139.148
+		C71.048,115.568,39.6,111.655,21.915,172.576z"/>
+	<path class="st0" d="M497.908,126.057h-0.039c-5.604,0-6.166,4.545-6.166,10.149v64.69h-16.248v-64.69
+		c0-5.604-4.545-10.149-10.149-10.149c-5.604,0-10.149,4.545-10.149,10.149v64.69h-19.074v-64.69c0-5.604-0.563-10.149-6.167-10.149
+		h-0.039c-7.779,0-14.092,6.313-14.092,14.092v60.747c0,26.105,6.808,33.117,13.674,39.983c7.459,7.459,11.256,9.945,11.256,18.646
+		c0,8.702,0,36.837,0,36.837v85.464c0,9.216,7.488,16.704,16.704,16.704h12.946c9.216,0,16.704-7.488,16.704-16.704V259.525
+		c0-8.702,3.797-11.188,11.256-18.646c6.866-6.866,13.674-13.878,13.674-39.983v-60.747C512,132.37,505.687,126.057,497.908,126.057
+		z"/>
+</g>
+</svg>`
+
 
 export const ChildIcon = `<?xml version="1.0" encoding="utf-8"?>
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->

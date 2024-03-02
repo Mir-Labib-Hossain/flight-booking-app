@@ -50,7 +50,7 @@ const SelectPassenger = ({ onTravelersAdultChange, onTravelersChildAgeChange, on
                   -
                 </Button>
                 <p>{travelersAdult}</p>
-                <Button type="primary" block className="bg-primary p-0  h-6 min-w-6 rounded-[4px] flex items-center justify-center" size="large" onClick={() => onTravelersAdultChange(1)} disabled={value === 10}>
+                <Button type="primary" block className="bg-primary p-0  h-6 min-w-6 rounded-[4px] flex items-center justify-center" size="large" onClick={() => onTravelersAdultChange(1)} >
                   +
                 </Button>
               </div>
@@ -70,12 +70,12 @@ const SelectPassenger = ({ onTravelersAdultChange, onTravelersChildAgeChange, on
                   -
                 </Button>
                 <p>{travelersChild}</p>
-                <Button type="primary" block className="bg-primary p-0  h-6 min-w-6 rounded-[4px] flex items-center justify-center" size="large" onClick={() => onTravelersChildChange(1)} disabled={value === 10}>
+                <Button type="primary" block className="bg-primary p-0  h-6 min-w-6 rounded-[4px] flex items-center justify-center" size="large" onClick={() => onTravelersChildChange(1)} >
                   +
                 </Button>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex justify-evenly flex-wrap gap-2">
               {Array.from(Array(travelersChild), (_e, index) => (
                 <Select key={`child-age-${index}`} className="bg-secondary rounded-md w-[45%]" size="small" defaultValue={2} placeholder="Borderless" variant="borderless" options={Array.from(Array(11), (_e, index) => ({ value: index + 2, label: index + 2 + " Years old" }))} optionRender={(option) => <div className="text-xs">{option.label}</div>} />
               ))}
@@ -95,13 +95,13 @@ const SelectPassenger = ({ onTravelersAdultChange, onTravelersChildAgeChange, on
                   -
                 </Button>
                 <p>{travelersInfants}</p>
-                <Button type="primary" block className="bg-primary p-0  h-6 min-w-6 rounded-[4px] flex items-center justify-center" size="large" onClick={() => onTravelersInfantsChange(1)} disabled={value === 10}>
+                <Button type="primary" block className="bg-primary p-0  h-6 min-w-6 rounded-[4px] flex items-center justify-center" size="large" onClick={() => onTravelersInfantsChange(1)} >
                   +
                 </Button>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex justify-evenly flex-wrap gap-2">
               {Array.from(Array(travelersInfants), (_e, index) => (
                 <Select key={`infants-age-${index}`} className="bg-secondary rounded-md w-[45%]" size="small" defaultValue={0} placeholder="Borderless" variant="borderless" options={Array.from(Array(2), (_e, index) => ({ value: index, label: index + " Years old" }))} optionRender={(option) => <div className="text-xs">{option.label}</div>} />
               ))}

@@ -29,11 +29,11 @@ const Loading = ({ fromCode, toCode }: Props) => {
           </div>
           <div className="flex gap-2 items-center">
             <LoadingOutlined />
-            <p>Checking your details</p>
+            <p className="text-[#A0A0A0]">Checking your details</p>
           </div>
           <div className="flex gap-2 items-center">
             <LoadingOutlined />
-            <p>Sorting your preferences</p>
+            <p className="text-[#A0A0A0]">Sorting your preferences</p>
           </div>
         </div>
       </div>

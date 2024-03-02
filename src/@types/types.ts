@@ -64,14 +64,14 @@ export interface IFlight {
   tracking_id: string; // ""11170930056015360895D3";
   flight_key: string; // ""F1AE00009-0";
   Session_Key?: null;
-  FlightTrackingID?: number,
-  
+  FlightTrackingID?: number;
+
   hold_possible: string; // ""yes";
   package_option: string; // ""no";
-  
+  package_title?: any;
   last_ticket_time: string; // ""2024-03-02";
-  flight_uid: string; // ""1";
-  instantTicketingRequired: false;
+  flight_uid?: string; // ""1";
+  instantTicketingRequired?: false;
   search_parameter: {
     journey_type: string; // ""OneWay";
     segment: {
@@ -128,103 +128,113 @@ export interface IFlight {
       no_of_stops: number;
       flight_time: string; // ""PT2H30M";
       transit_time: null;
-      routes: [
-        {
-          air_segment_key: string; // ""68";
-          origin: string; // ""DAC";
-          departure_time: string; // ""2024-03-20T11:30:00";
-          origin_terminal: string; // ""2";
-          origin_airport: {
-            name: string; // ""Hazrat Shahjalal International Airport";
-            city: string; // ""Dhaka";
-            country: string; // ""Bangladesh";
-            timezone: string; // ""Asia/Dhaka";
+      routes: {
+        group_departureDate?: string;
+        departureDateAdjustment?: null | number;
+        air_segment_key: string; // ""68";
+        origin: string; // ""DAC";
+        departure_time: string; // ""2024-03-20T11:30:00";
+        origin_terminal: string; // ""2";
+        origin_airport: {
+          name: string; // ""Hazrat Shahjalal International Airport";
+          city: string; // ""Dhaka";
+          country: string; // ""Bangladesh";
+          timezone: string; // ""Asia/Dhaka";
+        };
+        destination: string; // ""BKK";
+        arrival_time: string; // ""2024-03-20T15:00:00";
+        destination_terminal: null | string;
+        destination_airport: {
+          name: string; // ""Suvarnabhumi Airport";
+          city: string; // ""Bangkok";
+          country: string; // ""Thailand";
+          timezone: string; // ""Asia/Bangkok";
+        };
+        flight_date: string; // ""2024-03-20";
+        flight_time: string; // ""PT2H30M";
+        distance: number | null | string;
+        lay_over: string; // ""not-applicable";
+        lay_over_date: string; // ""not-applicable";
+        aircraft: {
+          code: string; // ""738";
+          name: string; // ""738";
+          picture: string; // ""738.png";
+        };
+        operating: {
+          carrier: string; // ""BG";
+          carrier_name: string; // ""Biman Bangladesh Airlines";
+          carrier_logo: string; // ""BG.png";
+          flight_number: number | string; // ""388";
+        };
+        marketing: {
+          carrier: string; // ""BG";
+          carrier_name: string; // ""Biman Bangladesh Airlines";
+          carrier_logo: string; // ""BG.png";
+          flight_number: number | string; // ""388";
+        };
+        booking_class: {
+          cabin_class: string; // ""ECONOMY";
+          cabin_code: string; // ""ECONOMY";
+          booking_code: string; // ""KBDO";
+          meal_code: string; // ""not-available";
+          seat_available: number | string; // ""not-available";
+          fareBasisCode?: string;
+          ticketDesignator?: null;
+          matchedAccountCode?: null;
+          vendorCode?: string;
+          fareTypeBitmap?: string;
+          fareType?: string;
+          fareTariff?: string;
+          fareRule?: string;
+          SegmentType?: string;
+          brandName?: null;
+          brand?: {
+            brand_id: string;
+            title: string;
+            details: string[];
+            image: [
+              {
+                link: string;
+                size: {
+                  Type: string;
+                  ImageWidth: string;
+                  ImageHeight: string;
+                };
+              },
+              {
+                link: string;
+                size: {
+                  Type: string;
+                  ImageWidth: string;
+                  ImageHeight: string;
+                };
+              }
+            ];
           };
-          destination: string; // ""BKK";
-          arrival_time: string; // ""2024-03-20T15:00:00";
-          destination_terminal: null;
-          destination_airport: {
-            name: string; // ""Suvarnabhumi Airport";
-            city: string; // ""Bangkok";
-            country: string; // ""Thailand";
-            timezone: string; // ""Asia/Bangkok";
-          };
-          flight_date: string; // ""2024-03-20";
-          flight_time: string; // ""PT2H30M";
-          distance: null | string;
-          lay_over: string; // ""not-applicable";
-          lay_over_date: string; // ""not-applicable";
-          aircraft: {
-            code: string; // ""738";
-            name: string; // ""738";
-            picture: string; // ""738.png";
-          };
-          operating: {
-            carrier: string; // ""BG";
-            carrier_name: string; // ""Biman Bangladesh Airlines";
-            carrier_logo: string; // ""BG.png";
-            flight_number: string; // ""388";
-          };
-          marketing: {
-            carrier: string; // ""BG";
-            carrier_name: string; // ""Biman Bangladesh Airlines";
-            carrier_logo: string; // ""BG.png";
-            flight_number: string; // ""388";
-          };
-          booking_class: {
-            cabin_class: string; // ""ECONOMY";
-            cabin_code: string; // ""ECONOMY";
-            booking_code: string; // ""KBDO";
-            meal_code: string; // ""not-available";
-            seat_available: string; // ""not-available";
-            brand: {
-              brand_id: string;
-              title: string;
-              details: string[];
-              image: [
-                {
-                  link: string;
-                  size: {
-                    Type: string;
-                    ImageWidth: string;
-                    ImageHeight: string;
-                  };
-                },
-                {
-                  link: string;
-                  size: {
-                    Type: string;
-                    ImageWidth: string;
-                    ImageHeight: string;
-                  };
-                }
-              ];
+        };
+        baggages: {
+          checked: {
+            ADT: {
+              passenger_type: string; // ""ADT";
+              baggage_type: string; // ""checked";
+              pieceCount: null;
+              weight: number | string;
+              unit: string; // ""kg";
+              title: string; // ""30 kg";
             };
           };
-          baggages: {
-            checked: {
-              ADT: {
-                passenger_type: string; // ""ADT";
-                baggage_type: string; // ""checked";
-                pieceCount: null;
-                weight: string;
-                unit: string; // ""kg";
-                title: string; // ""30 kg";
-              };
-            };
-            carry_on: {
-              ADT: {
-                passenger_type: string; // ""ADT";
-                baggage_type: string; // ""carry_on";
-                pieceCount: null;
-                weight: string | null;
-                unit: string | null;
-                title: string | null;
-              };
+          carry_on: {
+            ADT: {
+              passenger_type: string; // ""ADT";
+              baggage_type: string; // ""carry_on";
+              pieceCount: null | number;
+              weight: string | null | number;
+              unit: string | null;
+              title: string | null;
             };
           };
-        }
-      ];
+        };
+      }[];
     }
   ];
   price: {
