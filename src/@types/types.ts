@@ -63,8 +63,12 @@ export interface IAirportOption extends IAirport {
 export interface IFlight {
   tracking_id: string; // ""11170930056015360895D3";
   flight_key: string; // ""F1AE00009-0";
+  Session_Key?: null;
+  FlightTrackingID?: number,
+  
   hold_possible: string; // ""yes";
   package_option: string; // ""no";
+  
   last_ticket_time: string; // ""2024-03-02";
   flight_uid: string; // ""1";
   instantTicketingRequired: false;
@@ -147,7 +151,7 @@ export interface IFlight {
           };
           flight_date: string; // ""2024-03-20";
           flight_time: string; // ""PT2H30M";
-          distance: null;
+          distance: null | string;
           lay_over: string; // ""not-applicable";
           lay_over_date: string; // ""not-applicable";
           aircraft: {
@@ -173,6 +177,29 @@ export interface IFlight {
             booking_code: string; // ""KBDO";
             meal_code: string; // ""not-available";
             seat_available: string; // ""not-available";
+            brand: {
+              brand_id: string;
+              title: string;
+              details: string[];
+              image: [
+                {
+                  link: string;
+                  size: {
+                    Type: string;
+                    ImageWidth: string;
+                    ImageHeight: string;
+                  };
+                },
+                {
+                  link: string;
+                  size: {
+                    Type: string;
+                    ImageWidth: string;
+                    ImageHeight: string;
+                  };
+                }
+              ];
+            };
           };
           baggages: {
             checked: {
@@ -180,7 +207,7 @@ export interface IFlight {
                 passenger_type: string; // ""ADT";
                 baggage_type: string; // ""checked";
                 pieceCount: null;
-                weight: number;
+                weight: string;
                 unit: string; // ""kg";
                 title: string; // ""30 kg";
               };
@@ -190,9 +217,9 @@ export interface IFlight {
                 passenger_type: string; // ""ADT";
                 baggage_type: string; // ""carry_on";
                 pieceCount: null;
-                weight: null;
-                unit: null;
-                title: null;
+                weight: string | null;
+                unit: string | null;
+                title: string | null;
               };
             };
           };
@@ -242,15 +269,27 @@ export interface IFlight {
         currency: string; // ""USD";
         amount: number;
       };
+      commission?: {
+        total: number;
+        base_fare: number;
+        tax: number;
+      };
+      applied_comission?: null;
+      before_comission?: {
+        total: number;
+        base_fare: number;
+        tax: number;
+      };
     };
     revenue: {
       supplier_currency: string; // ""USD";
-      flight_price: string; // ""250.00";
+      flight_price: string | number; // ""250.00";
+      flight_price_before_comission?: string;
       fmg_price: number;
       revenue: number;
       total_passenger: number;
-      ticket_issue_charge: string; // ""0";
-      total_ticket_issue_charge: string; // ""0.00";
+      ticket_issue_charge: string | number; // ""0";
+      total_ticket_issue_charge: string | number; // ""0.00";
     };
     fmg: {
       total: {
@@ -318,7 +357,7 @@ export interface IFlight {
       penalty_markup: string; // ""0.00";
       status: string; // ""active";
     };
-    supplier_fare_rules: null;
+    supplier_fare_rules?: null;
   };
   price_breakdown: [
     {
@@ -336,6 +375,11 @@ export interface IFlight {
       base_fare: {
         currency: string; // ""BDT";
         amount: number;
+      };
+      commission?: {
+        total: number;
+        base_fare: number;
+        tax: number;
       };
       partner: {
         total: {
@@ -389,11 +433,16 @@ export interface IFlight {
       destination: string; // ""BKK";
       baggage_type: string; // ""checked";
       pieceCount: null;
-      weight: number;
+      weight: string;
       unit: string; // ""kg";
     }
   ];
   fare_rules: {
+    refundable_data?: [
+      {
+        Percentage: string[];
+      }
+    ];
     refundable: string; // ""non-refundable";
     change_before_departure: string; // ""not-available";
   };
@@ -401,8 +450,8 @@ export interface IFlight {
     price: number;
     departure_timing_slot: string; // ""morning";
     departure_departure_time: string; // ""2024-03-20T11:30:00";
-    arrival_timing_slot: null;
-    arrival_departure_time: null;
+    arrival_timing_slot: null | string;
+    arrival_departure_time: null | string;
     journey: {
       duration: string; // ""PT2H30M";
       duration_seconds: number;
@@ -417,9 +466,26 @@ export interface IFlight {
     baggage_summery_title: string; // ""kg";
     baggage_summery_adult: string; // ""30";
     baggage_summery: string; // ""30 kg";
+    aircraft_name?: string;
+    cabin_class?: string;
   };
   filter_unique_filter_code: string; // ""dac202403201130bkk202403201500388";
   total_price: number;
   destination_reach_time: string; // ""PT2H30M";
   destination_reach_timestamp: number;
+}
+
+export interface IFlightSearchRes {
+  status: string;
+  search_duration: string;
+  tracking_id: string;
+  total_fight: number;
+  currency: string;
+  resources: {
+    base_url: {
+      carrier: string;
+      aircraft: string;
+    };
+  };
+  data: IFlight[];
 }

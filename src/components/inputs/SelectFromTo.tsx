@@ -14,12 +14,10 @@ interface Props {
 const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartureChange }: Props) => {
   const [data, setData] = useState<IAirportOption[]>([]);
   const [loading, setLoading] = useState(false);
-  console.log("Fromto",loading);
 
   useEffect(() => {
-    console.log("ueff Fromto",loading);
     const fetchAirports = async () => {
-      setLoading(true)
+      setLoading(true);
       const headers = new Headers({
         apikey: "ITT88534696524514",
         secretecode: "BOUINpK3g7kUI9TJ9eVgaK8l1stXNzz4YC5KiOBotf9",
@@ -33,7 +31,7 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartu
       });
       setData(tempArr);
     };
-     fetchAirports();
+    fetchAirports();
   }, []);
 
   const handleSwitch = () => {
@@ -56,7 +54,7 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartu
           placeholder={loading ? "Loading . . ." : "Select"}
           optionFilterProp="children"
           variant="borderless"
-          filterOption={(input, option) => (option?.label ?? "").includes(input)}
+          filterOption={(input, option) => (option?.label.toLowerCase() ?? "").includes(input.toLowerCase())}
           filterSort={(optionA, optionB) => (optionA?.label ?? "").toLowerCase().localeCompare((optionB?.label ?? "").toLowerCase())}
           options={data}
           optionRender={(option) => (
@@ -90,7 +88,7 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartu
           placeholder={loading ? "Loading . . ." : "Select"}
           optionFilterProp="children"
           variant="borderless"
-          filterOption={(input, option) => (option?.label ?? "").includes(input)}
+          filterOption={(input, option) => (option?.label.toLowerCase() ?? "").includes(input.toLowerCase())}
           filterSort={(optionA, optionB) => (optionA?.label ?? "").toLowerCase().localeCompare((optionB?.label ?? "").toLowerCase())}
           options={data}
           optionRender={(option) => (

@@ -9,7 +9,7 @@
   }
   
   .fill-left-to-right {
-    animation: fill-left-to-right 3s ease-in-out;
+    animation: fill-left-to-right 5s ease-in-out;
     /* animation-iteration-count: infinite;
     animation-direction: alternate; */
   }
