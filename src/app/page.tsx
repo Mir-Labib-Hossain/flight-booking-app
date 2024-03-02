@@ -66,10 +66,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen relative flex justify-center items-center flex-col gap-12">
+    <div className="min-h-screen relative flex justify-center items-center flex-col gap-12 pt-10">
       {loading && <Loading fromCode={payload.segment[0].departure_airport} toCode={payload.segment[0].arrival_airport} />}
       <HeroBg />
-      <div className="mt-[20vh] relative container max-w-screen-lg w-full mx-auto px-4">
+      <div className="relative container max-w-screen-lg w-full mx-auto px-4">
         <div className="h-14 w-56 flex">
           <button onClick={() => setActiveTab(0)} className={`rounded-tl-md flex-1 flex justify-center items-center gap-2 ${activeTab === 0 ? "bg-white shadow-md shadow-white" : "bg-[#D7D1C3] text-white"}`}>
             <SvgToImg alt={"plane"} code={activeTab === 0 ? PlanePrimaryIcon : PlaneWhiteIcon} height={18} width={18} />
