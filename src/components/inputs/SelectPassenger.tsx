@@ -75,9 +75,9 @@ const SelectPassenger = ({ onTravelersAdultChange, onTravelersChildAgeChange, on
                 </Button>
               </div>
             </div>
-            <div className="flex justify-evenly flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {Array.from(Array(travelersChild), (_e, index) => (
-                <Select key={`child-age-${index}`} className="bg-secondary rounded-md w-[45%]" size="small" defaultValue={2} placeholder="Borderless" variant="borderless" options={Array.from(Array(11), (_e, index) => ({ value: index + 2, label: index + 2 + " Years old" }))} optionRender={(option) => <div className="text-xs">{option.label}</div>} />
+                <Select key={`child-age-${index}`} className="bg-secondary rounded-md w-[47%]" size="small" defaultValue={2} placeholder="Borderless" variant="borderless" options={Array.from(Array(11), (_e, index) => ({ value: index + 2, label: index + 2 + " Years old" }))} optionRender={(option) => <div className="text-xs">{option.label}</div>} />
               ))}
             </div>
           </div>
@@ -101,9 +101,9 @@ const SelectPassenger = ({ onTravelersAdultChange, onTravelersChildAgeChange, on
               </div>
             </div>
 
-            <div className="flex justify-evenly flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {Array.from(Array(travelersInfants), (_e, index) => (
-                <Select key={`infants-age-${index}`} className="bg-secondary rounded-md w-[45%]" size="small" defaultValue={0} placeholder="Borderless" variant="borderless" options={Array.from(Array(2), (_e, index) => ({ value: index, label: index + " Years old" }))} optionRender={(option) => <div className="text-xs">{option.label}</div>} />
+                <Select key={`infants-age-${index}`} className="bg-secondary rounded-md w-[47%]" size="small" defaultValue={0} placeholder="Borderless" variant="borderless" options={Array.from(Array(2), (_e, index) => ({ value: index, label: index + " Years old" }))} optionRender={(option) => <div className="text-xs">{option.label}</div>} />
               ))}
             </div>
           </div>
