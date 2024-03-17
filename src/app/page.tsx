@@ -3,7 +3,6 @@ import { EAirportType, EBookingClass, EFlight, EJourneyType, IFlightSearchRes, I
 import Loading from "@/components/Loading";
 import SvgToImg from "@/components/SvgToImg";
 import Flight from "@/components/home/Flight";
-import HeroBg from "@/components/home/HeroBg";
 import RoundedButton from "@/components/home/RoundedButton";
 import { CityBlack, CityPrimary, HotelPrimaryIcon, HotelWhiteIcon, LoopBlack, LoopPrimary, PlanePrimaryIcon, PlaneWhiteIcon, RightBlack, RightPrimary } from "@/components/icons";
 import DateRangepicker from "@/components/inputs/DateRangepicker";
@@ -20,16 +19,22 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
   const [loading, setLoading] = useState(false);
   const [flights, setFlights] = useState<IFlightSearchRes | undefined>(undefined);
+  const today = new Date();
+  const default_departure_date = new Date(today.setDate(today.getDate() + 20));
+  const default_arrival_date = new Date(today.setDate(today.getDate() + 25));
+  console.log(default_departure_date);
+  console.log(default_arrival_date);
+
   const [payload, setPayload] = useState<IPayload>({
     journey_type: EJourneyType.ONE_WAY, // OneWay, RoundTrip, MultiCity
     segment: [
       {
         departure_airport_type: EAirportType.CITY, // CITY or AIRPORT
-        departure_airport: "",
+        departure_airport: "BKK",
         arrival_airport_type: EAirportType.CITY, // CITY or AIRPORT
-        arrival_airport: "",
-        departure_date: dayjs().format("YYYY-MM-DD"),
-        arrival_date: dayjs().format("YYYY-MM-DD"), // Only For RoundTrip
+        arrival_airport: "DAC",
+        departure_date: dayjs(default_departure_date).format("YYYY-MM-DD"),
+        arrival_date: dayjs(default_arrival_date).format("YYYY-MM-DD"), // Only For RoundTrip
       },
     ],
     travelers_adult: 1,
@@ -47,7 +52,7 @@ export default function Home() {
   });
 
   const handleSearch = async () => {
-    console.log(payload);
+    setFlights(undefined)
     setLoading(true);
     const headers = new Headers({
       apikey: "ITT88534696524514",
@@ -66,9 +71,18 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen relative flex justify-center items-center flex-col gap-12 pt-10">
+    <div
+      className="min-h-screen relative flex justify-center items-center flex-col gap-12 pt-10"
+      style={{
+        backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 9) ), url(/hero-bg.png)",
+        // backgroundSize: "cover",
+        backgroundPosition: "top",
+        backgroundAttachment:"fixed",
+        backgroundRepeat:"repeat",
+      }}
+    >
       {loading && <Loading fromCode={payload.segment[0].departure_airport} toCode={payload.segment[0].arrival_airport} />}
-      <HeroBg />
+
       <div className="relative container max-w-screen-lg w-full mx-auto px-4">
         <div className="h-14 w-56 flex">
           <button onClick={() => setActiveTab(0)} className={`rounded-tl-md flex-1 flex justify-center items-center gap-2 ${activeTab === 0 ? "bg-white shadow-md shadow-white" : "bg-[#D7D1C3] text-white"}`}>
@@ -189,6 +203,7 @@ export default function Home() {
                 <>
                   <div className="flex items-center gap-3 my-3">
                     <SelectFromTo
+                    resetFlights={()=>setFlights(undefined)}
                       departureValue={payload.segment[0].departure_airport}
                       onDepartureChange={(newVal: string) =>
                         setPayload((prev) => ({
@@ -222,6 +237,7 @@ export default function Home() {
                       }
                     />
                   </div>
+                  <p className="text-xs text-gray-400">{`💡 Hint: for a 100% valid result hit 'Search' with default values!`}</p>
                   <div className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 ">
                     <Button onClick={handleSearch} type="primary" block className="bg-primary text-xl h-auto font-bold py-3 px-4" size="large" icon={<SearchOutlined />}>
                       SEARCH

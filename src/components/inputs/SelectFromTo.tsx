@@ -7,11 +7,13 @@ import { FromToIcon, PlaneBlackIcon } from "../icons";
 interface Props {
   onDepartureChange: (newValue: string) => void;
   onArrivalChange: (newValue: string) => void;
+
   departureValue: string;
   arrivalValue: string;
+  resetFlights:()=>void
 }
 
-const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartureChange }: Props) => {
+const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartureChange ,resetFlights}: Props) => {
   const [data, setData] = useState<IAirportOption[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -38,6 +40,7 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartu
     const tempDepurture = departureValue;
     onDepartureChange(arrivalValue);
     onArrivalChange(tempDepurture);
+    resetFlights()
   };
 
   return (
@@ -45,7 +48,7 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartu
       <div className="bg-secondary h-[62px] rounded-md flex flex-col justify-center">
         <p className="px-3 text-xs text-[#838383]">Leaving From</p>
         <Select
-          value={!!departureValue ? departureValue : null}
+          value={(!loading&&!!departureValue) ? departureValue : null}
           loading={loading}
           showSearch
           removeIcon
@@ -79,7 +82,7 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartu
       <div className="bg-secondary h-[62px] rounded-md flex flex-col justify-center">
         <p className="px-3 text-xs text-[#838383]">Going To</p>
         <Select
-          value={!!arrivalValue ? arrivalValue : null}
+          value={(!loading&&!!arrivalValue) ? arrivalValue : null}
           onChange={onArrivalChange}
           loading={loading}
           showSearch
