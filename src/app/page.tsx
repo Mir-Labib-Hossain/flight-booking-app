@@ -257,7 +257,7 @@ export default function Home() {
           )}
         </div>
       </div>
-      {flights && <>{flights.data ? <Flight flights={flights} from={payload.segment[0].departure_airport} to={payload.segment[0].arrival_airport} date={payload.segment[0].departure_date} /> : <p>Sorry There are no available flights.</p>}</>}
+      {flights && <>{flights.data ? <Flight flights={flights} from={payload.segment[0].departure_airport} to={payload.segment[0].arrival_airport} date={payload.segment[0].departure_date} /> : <p className="text-white">Sorry There are no available flights.</p>}</>}
     </div>
   );
 }
