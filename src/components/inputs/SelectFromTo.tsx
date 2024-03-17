@@ -31,6 +31,8 @@ const SelectFromTo = ({ arrivalValue, departureValue, onArrivalChange, onDepartu
       formatedData.map((item: IAirport) => {
         tempArr.push({ label: item.city_name + " - " + item.country_name, value: item.code, ...item });
       });
+      console.log(tempArr.length);
+      
       setData(tempArr);
     };
     fetchAirports();

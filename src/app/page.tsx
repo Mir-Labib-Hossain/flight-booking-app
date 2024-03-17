@@ -52,7 +52,7 @@ export default function Home() {
   });
 
   const handleSearch = async () => {
-    setFlights(undefined)
+    setFlights(undefined);
     setLoading(true);
     const headers = new Headers({
       apikey: "ITT88534696524514",
@@ -77,8 +77,8 @@ export default function Home() {
         backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 9) ), url(/hero-bg.png)",
         // backgroundSize: "cover",
         backgroundPosition: "top",
-        backgroundAttachment:"fixed",
-        backgroundRepeat:"repeat",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "repeat",
       }}
     >
       {loading && <Loading fromCode={payload.segment[0].departure_airport} toCode={payload.segment[0].arrival_airport} />}
@@ -203,7 +203,7 @@ export default function Home() {
                 <>
                   <div className="flex items-center gap-3 my-3">
                     <SelectFromTo
-                    resetFlights={()=>setFlights(undefined)}
+                      resetFlights={() => setFlights(undefined)}
                       departureValue={payload.segment[0].departure_airport}
                       onDepartureChange={(newVal: string) =>
                         setPayload((prev) => ({
@@ -237,7 +237,10 @@ export default function Home() {
                       }
                     />
                   </div>
-                  <p className="text-xs text-gray-400">{`💡 Hint: for a 100% valid result hit 'Search' with default values!`}</p>
+                  <p className="text-xs text-gray-400">
+                    💡 <span className="text-primary">Hint: </span>
+                    {`for a 100% valid result hit 'Search' with default values!`}
+                  </p>
                   <div className="absolute -bottom-7 left-1/2 transform -translate-x-1/2 ">
                     <Button onClick={handleSearch} type="primary" block className="bg-primary text-xl h-auto font-bold py-3 px-4" size="large" icon={<SearchOutlined />}>
                       SEARCH
